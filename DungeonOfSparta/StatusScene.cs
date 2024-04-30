@@ -17,9 +17,17 @@
         int bonusDef = inventory.Select(item => item.IsEquipped ? item.Def : 0).Sum();
         int bonusHp = inventory.Select(item => item.IsEquipped ? item.Hp : 0).Sum();
 
-        ConsoleUtility.PrintTextHighlights("공격력 : ", (player.Atk + bonusAtk).ToString(), bonusAtk > 0 ? $" (+{bonusAtk})" : "");
-        ConsoleUtility.PrintTextHighlights("방어력 : ", (player.Def + bonusDef).ToString(), bonusDef > 0 ? $" (+{bonusDef})" : "");
-        ConsoleUtility.PrintTextHighlights("체 력 : ", (player.Hp + bonusHp).ToString(), bonusHp > 0 ? $" (+{bonusHp})" : "");
+        var current = player;
+        current.Atk += bonusAtk;
+        current.Def += bonusDef;
+        current.Hp += bonusHp;
+        player.Atk = current.Atk;
+        player.Def = current.Def;
+        player.Hp = current.Hp;
+
+        ConsoleUtility.PrintTextHighlights("공격력 : ", (player.Atk).ToString(), bonusAtk > 0 ? $" (+{bonusAtk})" : "");
+        ConsoleUtility.PrintTextHighlights("방어력 : ", (player.Def).ToString(), bonusDef > 0 ? $" (+{bonusDef})" : "");
+        ConsoleUtility.PrintTextHighlights("체 력 : ", (player.Hp).ToString(), bonusHp > 0 ? $" (+{bonusHp})" : "");
 
         ConsoleUtility.PrintTextHighlights("Gold : ", player.Gold.ToString());
         Console.WriteLine("");

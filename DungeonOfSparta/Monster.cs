@@ -4,9 +4,9 @@ internal class Monster
 {
     public string Name { get; }
     public int Level { get; }
-    public int Hp { get; }
+    public int Hp { get; set; }
     public int Atk { get; }
-    public bool IsDead { get; private set; }
+    public bool IsDead { get; set; }
 
     public Monster(string name, int level, int hp, int atk, bool isDead = false)
     {
@@ -19,6 +19,7 @@ internal class Monster
 
     public void PrintMonsterDescription(bool withNumber = false, int idx = 0)
     {
+        
         if (withNumber)
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -27,6 +28,14 @@ internal class Monster
         }
         ConsoleUtility.PrintTextHighlights("Lv.", Level.ToString(), " ", false);
         Console.Write($"{Name} ");
-        ConsoleUtility.PrintTextHighlights("HP ", Hp.ToString());
+        if (IsDead == false)
+        {
+            ConsoleUtility.PrintTextHighlights("HP ", Hp.ToString());
+        }
+        else
+        {
+            Console.WriteLine("Dead");
+        }
+        
     }
 }
