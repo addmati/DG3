@@ -13,11 +13,12 @@ public partial class GameManager
 
     Random random = new Random();
     int randomNumber;
-    
+    int originalHp;
     private void BattleScene()
     {
+        originalHp = player.Hp;
         monsters = new List<Monster>();
-
+        
         randomNumber = random.Next(1, 5);
         for (int i = 0; i < randomNumber; i++)
         {
@@ -176,11 +177,11 @@ public partial class GameManager
                 
 
                 Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}의 공격!");
-                Console.WriteLine($"{player.Name}을(를) 맞췄습니다. [데미지 : {monsters[i].Atk + enemyRandomDamage}]");
+                Console.WriteLine($"{player.Name}을(를) 맞췄습니다. [데미지 : {monsters[i].Atk + enemyRandomDamage-player.Def}]");
                 Console.Write($"Lv.{player.Level} {player.Name}\n" +
                               $"HP {player.Hp} - > ");
                 var current = player;
-                current.Hp -= (monsters[i].Atk+ enemyRandomDamage);
+                current.Hp -= (monsters[i].Atk+ enemyRandomDamage- player.Def);
                 player.Hp = current.Hp;
                 
                 if (player.Hp <= 0)
@@ -235,7 +236,7 @@ public partial class GameManager
             Console.WriteLine("Victory");
             Console.WriteLine($"던전에서{monsters.Count}마리를 잡았습니다.");
             Console.WriteLine($"Lv.{player.Level} {player.Name}\n" +
-                                 $"HP {player.Hp} - > {player.Hp}");
+                                 $"HP {originalHp} - > {player.Hp}");
         }
         Console.WriteLine("");
         Console.WriteLine("0. 다음");
