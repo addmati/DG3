@@ -1,5 +1,6 @@
 ﻿public partial class GameManager
 {
+   
     private void MainScene()
     {
         // 구성
@@ -20,10 +21,10 @@
         Console.WriteLine("5. 회복 아이템");
         Console.WriteLine("");
 
-        // 2. 선택한 결과를 검증함
+        
         int choice = ConsoleUtility.PromptSceneChoice(1, 5);
 
-        // 3. 선택한 결과에 따라 보내줌
+     
         switch (choice)
         {
             case 1:

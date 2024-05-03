@@ -40,7 +40,7 @@
         Console.WriteLine("[아이템 목록]");
         for (int i = 0; i < inventory.Count; i++)
         {
-            inventory[i].PrintItemStatDescription(true, i + 1); // 나가기가 0번 고정, 나머지가 1번부터 배정
+            inventory[i].PrintItemStatDescription(true, i + 1); 
         }
         Console.WriteLine("");
         Console.WriteLine("0. 나가기");
